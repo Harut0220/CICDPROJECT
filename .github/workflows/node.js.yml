@@ -10,6 +10,10 @@ jobs:
   build:
     runs-on: self-hosted
 
+    strategy:
+      matrix:
+        node-version: [20.x]
+
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
@@ -28,15 +32,11 @@ jobs:
     - name: Install PM2 globally
       run: npm install -g pm2
 
+    - name: Add npm global bin to PATH (temporary)
+      run: echo "$(npm bin -g)" >> $GITHUB_PATH
+
     - name: Verify PM2 installation
       run: pm2 --version
 
     - name: Restart application with PM2
       run: pm2 restart all
-
-    strategy:
-      matrix:
-        node-version: [20.x]
-
-
-
