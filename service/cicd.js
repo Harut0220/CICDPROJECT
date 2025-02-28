@@ -1,10 +1,7 @@
-
-
-const cicdService={
-    get: async()=>{
+const cicdService = {
+    get: async () => {
         return 'Hello World';
     }
-}
+};
 
-
-export default cicdService;
+module.exports = cicdService;

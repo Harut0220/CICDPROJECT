@@ -1,11 +1,8 @@
-import { Router } from "express";
-import cicd from "../controller/cicd.js";
-
+const { Router } = require('express');
+const cicd = require('../controller/cicd.js');
 
 const router = Router();
 
-
 router.get('/cd', cicd.get);
 
-
-export default router;
+module.exports = router;

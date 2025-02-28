@@ -1,4 +1,4 @@
-import cicdService from "../service/cicd.js";
+const cicdService = require('../service/cicd.js');
 
 const cicd = {
   get: async (req, res) => {
@@ -7,4 +7,4 @@ const cicd = {
   },
 };
 
-export default cicd;
+module.exports = cicd;
