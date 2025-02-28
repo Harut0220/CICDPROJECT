@@ -5,6 +5,7 @@ const app = express();
 
 app.use('/ci', router);
 
+console.log("hello world");
 
 
 app.listen(3000, () => {
