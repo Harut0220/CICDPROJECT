@@ -9,6 +9,7 @@ const app = express();
 
 app.use('/ci', router);
 
+console.log('Server is starting...=====================');
 
 
 app.listen(3000, () => {
