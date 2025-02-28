@@ -1,6 +1,4 @@
-
 name: Node.js CI
-
 
 on:
   push:
@@ -8,18 +6,37 @@ on:
   pull_request:
     branches: [ main ]
 
-
 jobs:
   build:
-
     runs-on: self-hosted
 
     steps:
-    - uses: actions/checkout@v2
+    - name: Checkout code
+      uses: actions/checkout@v2
+
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-    - run: git pull origin main
-    - run: npm i
-    - run: pm2 restart all
+
+    - name: Pull latest changes
+      run: git pull origin main
+
+    - name: Install dependencies
+      run: npm i
+
+    - name: Install PM2 globally
+      run: npm install -g pm2
+
+    - name: Verify PM2 installation
+      run: pm2 --version
+
+    - name: Restart application with PM2
+      run: pm2 restart all
+
+    strategy:
+      matrix:
+        node-version: [20.x]
+
+
+
