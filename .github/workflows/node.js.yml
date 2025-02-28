@@ -10,18 +10,14 @@ jobs:
   build:
     runs-on: self-hosted
 
-    strategy:
-      matrix:
-        node-version: [20.x]
-
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
 
-    - name: Use Node.js ${{ matrix.node-version }}
+    - name: Use Node.js
       uses: actions/setup-node@v1
       with:
-        node-version: ${{ matrix.node-version }}
+        node-version: '20.x'
 
     - name: Pull latest changes
       run: git pull origin main
@@ -32,11 +28,12 @@ jobs:
     - name: Install PM2 globally
       run: npm install -g pm2
 
-    - name: Add npm global bin to PATH (temporary)
-      run: echo "$(npm bin -g)" >> $GITHUB_PATH
+    - name: Add npm global bin to PATH
+      run: echo "$HOME/.npm-global/bin" >> $GITHUB_PATH
 
     - name: Verify PM2 installation
       run: pm2 --version
 
     - name: Restart application with PM2
       run: pm2 restart all
+
