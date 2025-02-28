@@ -4,9 +4,9 @@ name: Node.js CI
 
 on:
   push:
-    branches: [ master ]
+    branches: [ main ]
   pull_request:
-    branches: [ master ]
+    branches: [ main ]
 
 
 jobs:
@@ -20,6 +20,6 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-    - run: git pull origin master
+    - run: git pull origin main
     - run: npm i
     - run: pm2 restart all
