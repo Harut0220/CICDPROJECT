@@ -1,6 +1,6 @@
 const cicdService = {
     get: async () => {
-        return 'Hello World';
+        return 'Hello from CICD service';
     }
 };
 
